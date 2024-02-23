@@ -6,36 +6,36 @@ import (
 	"strings"
 )
 
-func attack(charName, charClass string) string {
+func Attack(charName, charClass string) string {
 	if charClass == "warrior" {
-		return fmt.Sprintf("%s нанес урон противнику равный %d.", charName, 5+randint(3, 5))
+		return fmt.Sprintf("%s нанес урон противнику равный %d.", charName, 5+Rand(3, 5))
 	}
 
 	if charClass == "mage" {
-		return fmt.Sprintf("%s нанес урон противнику равный %d.", charName, 5+randint(5, 10))
+		return fmt.Sprintf("%s нанес урон противнику равный %d.", charName, 5+Rand(5, 10))
 	}
 
 	if charClass == "healer" {
-		return fmt.Sprintf("%s нанес урон противнику равный %d.", charName, 5+randint(-3, -1))
+		return fmt.Sprintf("%s нанес урон противнику равный %d.", charName, 5+Rand(-3, -1))
 	}
 	return "неизвестный класс персонажа"
 }
 
-func defence(charName, charClass string) string {
+func Defence(charName, charClass string) string {
 	if charClass == "warrior" {
-		return fmt.Sprintf("%s блокировал %d урона.", charName, 10+randint(5, 10))
+		return fmt.Sprintf("%s блокировал %d урона.", charName, 10+Rand(5, 10))
 	}
 	if charClass == "mage" {
-		return fmt.Sprintf("%s блокировал %d урона.", charName, 10+randint(-2, 2))
+		return fmt.Sprintf("%s блокировал %d урона.", charName, 10+Rand(-2, 2))
 	}
 	if charClass == "healer" {
-		return fmt.Sprintf("%s блокировал %d урона.", charName, 10+randint(2, 5))
+		return fmt.Sprintf("%s блокировал %d урона.", charName, 10+Rand(2, 5))
 	}
 	return "неизвестный класс персонажа"
-	
+
 }
 
-func special(charName, charClass string) string {
+func Special(charName, charClass string) string {
 	if charClass == "warrior" {
 		return fmt.Sprintf("%s применил специальное умение `Выносливость %d`", charName, 80+25)
 	}
@@ -49,7 +49,7 @@ func special(charName, charClass string) string {
 
 }
 
-func start_training(charName, charClass string) string {
+func StartTraining(charName, charClass string) string {
 	if charClass == "warrior" {
 		fmt.Printf("%s, ты Воитель - отличный боец ближнего боя.\n", charName)
 	}
@@ -74,22 +74,22 @@ func start_training(charName, charClass string) string {
 		fmt.Scanf("%s\n", &cmd)
 
 		if cmd == "attack" {
-			fmt.Println(attack(charName, charClass))
+			fmt.Println(Attack(charName, charClass))
 		}
 
 		if cmd == "defence" {
-			fmt.Println(defence(charName, charClass))
+			fmt.Println(Defence(charName, charClass))
 		}
 
 		if cmd == "special" {
-			fmt.Println(special(charName, charClass))
+			fmt.Println(Special(charName, charClass))
 		}
 	}
 
 	return "тренировка окончена"
 }
 
-func choiseCharClass() string {
+func ChoiseCharClass() string {
 	var approveChoice string
 	var charClass string
 
@@ -123,11 +123,11 @@ func main() {
 	fmt.Println("Ты можешь выбрать один из трёх путей силы:")
 	fmt.Println("Воитель, Маг, Лекарь")
 
-	charClass := choiseCharClass()
+	charClass := ChoiseCharClass()
 
-	fmt.Println(start_training(charName, charClass))
+	fmt.Println(StartTraining(charName, charClass))
 }
 
-func randint(min, max int) int {
+func Rand(min, max int) int {
 	return rand.Intn(max-min) + min
 }
